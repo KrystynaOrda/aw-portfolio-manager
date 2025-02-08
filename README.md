@@ -1,8 +1,6 @@
-# Demo
+# Decentralized Lit Protocol & AI-powered portfolio manager
 
 ![Watch the demo](https://raw.githubusercontent.com/KrystynaOrda/aw-portfolio-manager/refs/heads/main/demo.gif)
-
-# Decentralized Lit Protocol & AI-powered portfolio manager
 
 The Decentralized Portfolio Manager powered by Lit Protocol & AI—automates asset rebalancing with secure Lit Actions, signed by a PKP. Users engage with AI for risk analysis, select dynamic strategies based on risk tolerance, execute trades on-chain, and interact via a real-time chat interface.
 
