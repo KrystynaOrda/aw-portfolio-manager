@@ -111,7 +111,9 @@ io.on("connection", (socket) => {
   async function getPortfolio(): Promise<Portfolio> {
     try {
       await streamMessage("Let me check your current portfolio...");
-      execSync("bun run ./src/6-get-portfolio.ts", { encoding: "utf-8" });
+      execSync("bun run ./src/frontend/6-get-portfolio.ts", {
+        encoding: "utf-8",
+      });
 
       const portfolioPath = path.join(
         process.cwd(),
@@ -319,7 +321,10 @@ ALLOCATION_DATA:
       const messageQueue: string[] = [];
       let isProcessing = false;
 
-      const script = childProcess.spawn("bun", ["run", "src/index.ts"]);
+      const script = childProcess.spawn("bun", [
+        "run",
+        "src/frontend/index.ts",
+      ]);
 
       async function processNextMessage() {
         if (isProcessing || messageQueue.length === 0) return;

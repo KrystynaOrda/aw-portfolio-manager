@@ -14,10 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@lit-protocol/aw-tool": ["packages/aw-tool/src/index.ts"],
-      "@lit-protocol/aw-tool-portfolio-manager": ["packages/aw-tool-portfolio-manager/src/index.ts"]
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
-} 
+}
