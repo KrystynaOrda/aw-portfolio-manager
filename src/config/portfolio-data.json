@@ -1,0 +1,18 @@
+{
+  "portfolio": [
+    {
+      "chain": "optimism",
+      "token": "OP",
+      "balance": "1.871895695543096984",
+      "usdValue": "1.946726",
+      "percentage": 60.1219532533118
+    },
+    {
+      "chain": "optimism",
+      "token": "ETH",
+      "balance": "0.000493414308098513",
+      "usdValue": "1.291236",
+      "percentage": 39.87804674668819
+    }
+  ]
+}

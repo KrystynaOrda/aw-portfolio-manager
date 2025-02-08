@@ -1,0 +1,7 @@
+{
+  "targetAllocations": {
+    "OP": 0.55,
+    "ETH": 0.45
+  },
+  "thresholdPercentage": 0.015
+}
