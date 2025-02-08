@@ -1,6 +1,6 @@
 # Demo
 
-![Watch the demo](./demo.gif)
+![Watch the demo](https://raw.githubusercontent.com/KrystynaOrda/aw-portfolio-manager/refs/heads/main/demo.gif)
 
 # Portfolio Manager
 
