@@ -1,14 +1,14 @@
 {
-  "name": "cross-chain-bot",
+  "name": "aw-portfolio-manager",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/KrystynaOrda/cross-chain-bot#readme",
+  "homepage": "https://github.com/KrystynaOrda/aw-portfolio-manager#readme",
   "bugs": {
-    "url": "https://github.com/KrystynaOrda/cross-chain-bot/issues"
+    "url": "https://github.com/KrystynaOrda/aw-portfolio-manager/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KrystynaOrda/cross-chain-bot.git"
+    "url": "git+https://github.com/KrystynaOrda/aw-portfolio-manager.git"
   },
   "license": "ISC",
   "author": "",
