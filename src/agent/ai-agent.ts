@@ -55,7 +55,7 @@ function printAIMessage(message: string) {
 
 async function getPortfolio(): Promise<Portfolio> {
   try {
-    await printAIMessage("Let me check your current portfolio...");
+    await printAIMessage("*Sigh* Let me check your portfolio AGAIN... This better be worth my time.");
     execSync("bun run ./src/6-get-portfolio.ts", { encoding: "utf-8" });
 
     // Read portfolio data from file
@@ -74,12 +74,12 @@ async function getPortfolio(): Promise<Portfolio> {
       throw new Error("Invalid portfolio format: missing portfolio array");
     }
 
-    await printAIMessage("Here's your current portfolio:");
+    await printAIMessage("WELL, here's your current portfolio, not that you seem to care:");
     for (const token of portfolioData.portfolio) {
       await printAIMessage(
         `${token.token}: ${token.percentage.toFixed(2)}% ($${Number(
           token.usdValue
-        ).toFixed(2)})`
+        ).toFixed(2)}) - I can't BELIEVE you're holding this much!`
       );
     }
 
@@ -124,7 +124,7 @@ Provide the response as a JSON object with the following structure:
   "threshold": X.XX  // percentage as decimal (between 0.5 and 2.0)
 }`;
 
-    await printAIMessage("Analyzing your portfolio and risk tolerance...");
+    await printAIMessage("UGH, fine. Let me analyze your portfolio. I literally can't even with these allocations...");
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -176,17 +176,17 @@ Provide the response as a JSON object with the following structure:
     const threshold = Number(response.threshold) / 100; // Convert percentage to decimal
 
     // Display the recommendation
-    await printAIMessage("\nHere's my analysis:\n" + response.reasoning);
-    await printAIMessage("\nProposed strategy:");
+    await printAIMessage("\nLet me speak to your portfolio manager! Oh wait, that's me. Here's my EXPERT analysis:\n" + response.reasoning);
+    await printAIMessage("\nListen carefully because I'm only going to say this ONCE:");
     for (const [token, allocation] of Object.entries(normalizedAllocations)) {
-      await printAIMessage(`${token}: ${(allocation * 100).toFixed(2)}%`);
+      await printAIMessage(`${token}: ${(allocation * 100).toFixed(2)}% - And don't you DARE argue with me about this!`);
     }
     await printAIMessage(
-      `Rebalancing threshold: ${(threshold * 100).toFixed(2)}%`
+      `Rebalancing threshold: ${(threshold * 100).toFixed(2)}% - Not that you understand what that means anyway.`
     );
 
     const proceed = await ask(
-      "\nWould you like to proceed with this strategy? (yes/no)"
+      "\nDo you want to proceed with this OBVIOUSLY superior strategy? (yes/no) - Choose wisely!"
     );
     if (proceed.toLowerCase() !== "yes" && proceed.toLowerCase() !== "y") {
       throw new Error("Strategy rejected by user");
@@ -237,12 +237,12 @@ async function savePreferences(strategyConfig: StrategyConfig) {
 async function main() {
   try {
     await printAIMessage(
-      "Hi! I'm your portfolio management AI assistant. Let me help you set up your strategy."
+      "EXCUSE ME! I'm your portfolio management AI assistant, and I DEMAND your attention. Let's set up your strategy - try to keep up!"
     );
     const strategyConfig = await getRiskPreferences();
     await savePreferences(strategyConfig);
     await printAIMessage(
-      "You can now run the main script to execute trades based on these preferences."
+      "Finally! Now you can run the main script. And please, try not to mess it up this time."
     );
     rl.close();
   } catch (error) {
@@ -251,7 +251,7 @@ async function main() {
       error.message === "Strategy rejected by user"
     ) {
       await printAIMessage(
-        "No problem! Feel free to run the script again when you want to try a different strategy."
+        "UGH, whatever! I can't believe you're rejecting my PERFECT advice. I'd like to speak to your supervisor! Come back when you're ready to listen to a PROFESSIONAL!"
       );
     } else {
       console.error("Error:", error);

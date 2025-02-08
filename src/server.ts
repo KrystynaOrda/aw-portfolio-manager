@@ -104,13 +104,15 @@ io.on("connection", (socket) => {
 
   // Initial greeting
   streamMessage(
-    "Hi! I'm your portfolio management AI assistant. What's your name?"
+    "EXCUSE ME! I'm your portfolio management AI assistant and I've been WAITING all day. What's your name? And please make it quick, I'm very busy!"
   );
 
   // Handle getting portfolio
   async function getPortfolio(): Promise<Portfolio> {
     try {
-      await streamMessage("Let me check your current portfolio...");
+      await streamMessage(
+        "🤦🏼‍♀️ Let me check your portfolio... This better be worth my time..."
+      );
       execSync("bun run ./src/frontend/6-get-portfolio.ts", {
         encoding: "utf-8",
       });
@@ -129,12 +131,14 @@ io.on("connection", (socket) => {
         throw new Error("Invalid portfolio format: missing portfolio array");
       }
 
-      await streamMessage("Here's your current portfolio:");
+      await streamMessage(
+        "WELL, here's your current portfolio, not that you seem to care:"
+      );
       for (const token of portfolioData.portfolio as PortfolioToken[]) {
         await streamMessage(
           `${token.token}: ${token.percentage.toFixed(2)}% ($${Number(
             token.usdValue
-          ).toFixed(2)})`,
+          ).toFixed(2)}) - I can't BELIEVE you're holding this much!`,
           "assistant",
           false
         );
@@ -310,7 +314,7 @@ ALLOCATION_DATA:
     );
     fs.writeFileSync(preferencesPath, JSON.stringify(strategyConfig, null, 2));
     await streamMessage(
-      "Great! I've saved your strategy preferences. Now executing the trades...",
+      "FINALLY! Someone who listens to reason. Let me save these preferences and execute the trades - try not to interrupt me!",
       "assistant",
       true
     );
@@ -430,7 +434,7 @@ ALLOCATION_DATA:
       console.error("Error executing main script:", error);
       // Send a more detailed error message to the chat
       await streamMessage(
-        "There was an error executing the trades:",
+        "Well, THIS is just GREAT. There's been an error, and it's probably YOUR fault. Try again!",
         "assistant",
         true
       );
@@ -455,20 +459,23 @@ ALLOCATION_DATA:
       switch (state) {
         case ConversationState.GREETING:
           await streamMessage(
-            `Nice to meet you${
+            `UGH, fine. Nice to meet you${
               message ? ", " + message : ""
-            }! I'll help you manage your cryptocurrency portfolio. First, let me show you your current holdings.`
+            }! I SUPPOSE I'll help you manage your cryptocurrency portfolio. Let me show you what you've done to your holdings.`
           );
           state = ConversationState.SHOW_PORTFOLIO;
           portfolio = await getPortfolio();
           await streamMessage(
-            "Now, could you tell me about your risk tolerance? For example, are you conservative, moderate, or aggressive with your investments?"
+            "Now, tell me about your risk tolerance - and it better be good! Are you conservative, moderate, or aggressive? Not that any of those choices are particularly impressive..."
           );
           state = ConversationState.ASK_RISK_TOLERANCE;
           socket.emit("enable_input");
           break;
 
         case ConversationState.ASK_RISK_TOLERANCE:
+          await streamMessage(
+            "Oh. My. God. THAT'S your risk tolerance? Whatever..."
+          );
           riskTolerance = message;
           state = ConversationState.GENERATE_STRATEGY;
           if (portfolio) {
@@ -477,7 +484,7 @@ ALLOCATION_DATA:
               riskTolerance
             );
             await streamMessage(
-              "Would you like to proceed with this strategy? (yes/no)"
+              "Listen here - do you want to proceed with this OBVIOUSLY superior strategy or not? (yes/no) Choose wisely!"
             );
             state = ConversationState.CONFIRMATION;
             socket.emit("enable_input");
@@ -497,38 +504,36 @@ ALLOCATION_DATA:
               await savePreferences(strategyConfig);
               state = ConversationState.GREETING;
               socket.emit("enable_input");
-            } else {
-              await streamMessage(
-                "Sorry, there was an error with the recommendation. Please try again."
-              );
-              state = ConversationState.ASK_RISK_TOLERANCE;
-              socket.emit("enable_input");
             }
           } else if (
             message.toLowerCase() === "no" ||
             message.toLowerCase() === "n"
           ) {
             await streamMessage(
-              "No problem! Would you like to try again with a different risk tolerance?"
+              "UGH, I can't BELIEVE you're rejecting my PERFECT advice! Do you want to try again with a different risk tolerance? And this time, try to be more reasonable!"
             );
             state = ConversationState.ASK_RISK_TOLERANCE;
             socket.emit("enable_input");
           } else {
-            await streamMessage("Please answer with yes or no.");
+            await streamMessage(
+              "Um, HELLO? I said yes or no! Is that so hard to understand?"
+            );
             socket.emit("enable_input");
           }
           break;
 
         default:
           await streamMessage(
-            "I didn't quite understand. Could you please try again?"
+            "I literally can't EVEN with you right now. Could you TRY to make sense? Is that too much to ask?"
           );
           socket.emit("enable_input");
           break;
       }
     } catch (error) {
       console.error("Error:", error);
-      await streamMessage("I encountered an error. Please try again.");
+      await streamMessage(
+        "Well, THIS is just GREAT. There's been an error, and it's probably YOUR fault. Try again!"
+      );
       state = ConversationState.GREETING;
       socket.emit("enable_input");
     }
