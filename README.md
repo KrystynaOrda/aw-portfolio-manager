@@ -13,6 +13,7 @@ Directory structure:
     ├── config/
     │   └── portfolio-data.json              # PKP portfolio data
     |   └── user-preference.json             # User strategy settings
+    |   └── delegation.ts
     ├── vendors/
     │   └── lit-service.ts
     ├── backend/

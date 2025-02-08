@@ -1,10 +1,17 @@
 {
   "name": "aw-portfolio-manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lit Protocol Powered AI Portfolio Manager",
   "homepage": "https://github.com/KrystynaOrda/aw-portfolio-manager#readme",
   "bugs": {
     "url": "https://github.com/KrystynaOrda/aw-portfolio-manager/issues"
+  },
+  "scripts": {
+    "setup": "bun run src/_setup.ts",
+    "build": "node build-lit-action.js",
+    "dev": "bun run src/frontend/index.ts",
+    "agent": "bun run src/agent/ai-agent.ts",
+    "server": "bun run src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -12,15 +19,28 @@
   },
   "license": "ISC",
   "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "esbuild": "^0.24.2"
   },
   "dependencies": {
     "@lit-protocol/constants": "^7.0.5",
     "@lit-protocol/contracts-sdk": "^7.0.5",
     "@lit-protocol/lit-node-client": "^7.0.5",
-    "ethers": "5.7.2"
+    "@t3-oss/env-core": "^0.12.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/inquirer": "^9.0.7",
+    "@types/socket.io": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ethers": "5.7.2",
+    "express": "^4.21.2",
+    "inquirer": "^12.4.1",
+    "jsbi": "^4.3.0",
+    "openai": "^4.83.0",
+    "socket.io": "^4.8.1",
+    "zod": "^3.24.1"
   }
 }
