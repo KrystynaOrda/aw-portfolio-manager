@@ -1,6 +1,6 @@
 # Demo
 
-[![Watch the demo](./demo.gif)]
+![Watch the demo](./demo.gif)
 
 # Portfolio Manager
 
