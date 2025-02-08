@@ -1,3 +1,7 @@
+# Demo
+
+[![Watch the demo](https://via.placeholder.com/600x300.png?text=Click+to+Watch+Demo)](./demo.mp4)
+
 # Portfolio Manager
 
 ```tree
